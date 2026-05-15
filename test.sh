@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# test.sh — End-to-end test script for the Tracelit Node.js CRUD dummy app.
+# test.sh — End-to-end test script for the Products CRUD API.
 #
-# Tests both NORMAL (happy-path CRUD) and DESTRUCTIVE (error/edge-case) flows
-# so the Tracelit dashboard receives a rich variety of traces and error spans.
+# Tests both NORMAL (happy-path CRUD) and DESTRUCTIVE (error/edge-case) flows.
 #
 # Usage:
 #   ./test.sh              # expects server running on localhost:3000
@@ -195,9 +194,9 @@ do_request DELETE "/products/not-a-number"
 assert_status "DELETE /products/not-a-number → 400" 400 "$STATUS"
 
 # ── DESTRUCTIVE: Error route demos ──────────────────────────────────────────
-section "Destructive — Error routes (Tracelit SDK demo)"
+section "Destructive — Error routes"
 
-log "Hitting /error/panic — expect 500 + error span in Tracelit"
+log "Hitting /error/panic — expect 500"
 do_request GET /error/panic || true
 assert_status "GET /error/panic → 500" 500 "$STATUS"
 
